@@ -7,19 +7,24 @@ const people = [
   "Facebook",
   "Twitter",
   "Linkedin",
-  "Sinkedin"
+  "Sinkedin",
 ];
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const handleChange = e => {
+
+  // Função para pegar o valor do input digitado
+  const handleChange = (e) => {
     console.log(e.target.value);
     setSearchTerm(e.target.value);
   };
 
+  // Para filtrar o array people.
+  // toLocaleLowerCase() retorna um valor de string convertido em lower case.
+  // includes() verifica se a array possui o valor e retorna true ou false.
   useEffect(() => {
-    const results = people.filter(person =>
+    const results = people.filter((person) =>
       person.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
     );
     setSearchResults(results);
@@ -34,7 +39,7 @@ const App = () => {
         onChange={handleChange}
       />
       <ul>
-        {searchResults.map(item => (
+        {searchResults.map((item) => (
           <li>{item}</li>
         ))}
       </ul>
